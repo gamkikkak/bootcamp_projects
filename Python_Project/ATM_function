@@ -1,0 +1,73 @@
+class ATM:
+    def __init__(self, name, password, balance):
+        self.name = name
+        self.password = password
+        self.balance = balance
+
+    def check_balance(self):
+        print(f'Account: {self.name}')
+        print(f'Balance: {self.balance} THB.')
+
+    def deposite(self):
+        money = float(input('Deposit Amount:'))
+        self.money = money
+        self.balance += money
+        print(f'Balance: {self.balance} THB.')
+        print('Deposit successfully.')
+
+    def withdraw(self):
+        money = float(input('Withdraw Amount:'))
+        self.money = money
+        if self.balance >= money:
+            self.balance -= money
+            print(f'Balance: {self.balance} THB.')
+            print('Withdraw successfully.')
+        else:
+            print('Sorry, please check your balance')
+
+    def transfer(self):
+        receiver_name = str(input('Receiver name:'))
+        self.receiver_name = receiver_name
+        money = float(input('Transfer Amount:'))
+        self.money = money
+        if self.balance >= money:
+            self.balance -= money
+            print(f'You want to transfer money to {self.receiver_name} {self.money} THB.')
+            print(f'New balance: {self.balance}')
+        else:
+            print('Your balance is not enough, Please check your balance')
+
+    def change_name(self):
+        new_name = str(input('New name:'))
+        self.name = new_name
+        print(f'Your new name: {self.name}')
+        print('Your account name has been changed.')
+
+    def change_password(self):
+        new_password = int(input('New password:'))
+        self.password = new_password
+        print('Your password has been changed.')
+
+    def log_in(self, name, password):
+        if self.name == name and self.password == password:
+            print('Login successfully')
+            print(f'Hello! {self.name}') 
+            print('What would you like to do?\n 1. Check balance\n 2. Deposit\n 3. Withdraw\n 4. Transfer\n 5. Change account name\n 6. Change password')
+            service = int(input('Please fill number of service:'))
+            if service == 1:
+                bank.check_balance()
+            elif service == 2:
+                bank.deposite()
+            elif service == 3:
+                bank.withdraw()
+            elif service == 4:
+                bank.transfer()
+            elif service == 5:
+                bank.change_name()
+            elif service == 6:
+                bank.change_password()
+
+        else:
+            print('Your information could not be found. Pleaase try again')
+
+        
