@@ -1,0 +1,71 @@
+import random 
+
+print('Welcome to Pao Ying Chob game !!!')
+name = input('Name:')
+print(f"Hi {name}, let's start !!")
+
+bot = ['Rock', 'Scissors', 'Paper']
+win = 0
+lose = 0
+tie = 0
+count = 0
+
+print('1. Play\n2. Exit')
+action = int(input(' '))
+
+while True:
+    if action == 1:
+        bot_action = random.choice(bot)
+        print('1. Rock 2. Scissors 3. Paper')
+        user = int(input('You choose: '))
+        print(f'Bot choose: {bot_action}')
+
+        if user == 1 and bot_action == 'Scissors':
+            print('You win !!!')
+            win += 1
+            count += 1
+        elif user == 2 and bot_action == 'Paper':
+            print('You win !!!')
+            win += 1
+            count += 1
+        elif user == 3 and bot_action == 'Rock':
+            print('You win !!!')
+            win += 1
+            count += 1
+
+        elif user == 1 and bot_action == 'Paper':
+            print('You lose !!!')
+            lose += 1
+            count += 1
+        elif user == 2 and bot_action == 'Rock':
+            print('You lose !!!')
+            lose += 1
+            count += 1
+        elif user == 3 and bot_action == 'Scissors':
+            print('You lose !!!')
+            lose += 1
+            count += 1
+
+        elif user == 1 and bot_action == 'Rock':
+            print('You tie !!!')
+            tie += 1
+            count += 1
+        elif user == 2 and bot_action == 'Scissors':
+            print('You tie !!!')
+            tie += 1
+            count += 1
+        elif user == 3 and bot_action == 'Paper':
+            print('You tie !!!')
+            tie += 1
+            count += 1
+        print('1. Play\n2. Exit')
+        action = int(input(' '))
+    elif action == 2:
+        print("Here's summary")
+        print(f'You play: {count}')
+        print(f'You win: {win}')
+        print(f'You lose: {lose}')
+        print(f'You tie: {tie}')
+        print("That was fun, See You Again !")
+        break
+
