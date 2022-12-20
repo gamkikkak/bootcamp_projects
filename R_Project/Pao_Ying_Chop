@@ -1,0 +1,67 @@
+print("Welcome to Pao Ying Chub game !!")
+print("What's your name ?")
+player_name <- readLines("stdin", n = 1)
+print(paste("Hi!", player_name))
+print("Let's Start")
+
+bot <- c("Hammer","Scissors","Paper")
+win <- 0
+tie <- 0
+lose <- 0
+count <- 0
+
+print("(1) Play   (2) Exit")
+action <- readLines("stdin",n=1)
+while(action == "1"){
+  bot_action <- sample(bot, size = 1)
+  print("1. Hammer 2. Scissors 3.Paper")
+  player <- readLines("stdin", n = 1)
+  
+  ## win
+  if(player == "1" & bot_action == "Scissors" || 
+     player == "2" & bot_action == "Paper"  ||
+     player == "3" & bot_action == "Hammer") {
+       print(paste("Bot chose", bot_action))
+       print("You won !!")
+       print("(1) Play Again  (2) Exit")
+       action <- readLines("stdin",n=1)
+       count <- count + 1
+       win <- win + 1
+     }
+
+  ## tie
+  else if(player == "1" & bot_action == "Hammer" || 
+          player == "2" & bot_action == "Scissors"  ||
+          player == "3" & bot_action == "Paper"){
+            print(paste("Bot chose", bot_action))
+            print("You tie !!")
+            print("(1) Play Again  (2) Exit")
+            action <- readLines("stdin",n=1)
+            count <- count + 1
+            tie <- tie + 1
+          }
+
+    ## lose
+    else if(player == "1" & bot_action == "Paper" || 
+            player == "2" & bot_action == "Hammer"  ||
+            player == "3" & bot_action == "Scissors"){              
+              print(paste("Bot chose", bot_action))
+              print("You lose !!")
+              print("(1) Play Again  (2) Exit")
+              action <- readLines("stdin",n=1)
+              count <- count + 1
+              lose <- lose + 1
+            }
+    
+      ## sum      
+      if(action == "2"){ 
+        print("Here's summary")
+        print(paste("You play: ", count, "games"))
+        print(paste("You win: ", win, "games"))
+        print(paste("You lose: ", lose, "games"))
+        print(paste("You tie: ", tie, "games"))
+        print("That was fun, See You Again !")
+        break
+      }
+      
+}
