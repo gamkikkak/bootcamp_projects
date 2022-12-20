@@ -1,0 +1,140 @@
+#df_pizzamenu
+pizza_id <- as.numeric(c(1,2,3))
+pizza_toppings <- c("Hawaiian pizza","Pepporini pizza","Seafood pizza")
+pizza_price <- c(120,150,200)
+
+df_pizza <- data.frame(ID = pizza_id,
+                       Menu = pizza_toppings,
+                       Price = pizza_price)
+
+pizza_sizeid <- c(1,2,3)
+pizza_size <- c("S","M","L")
+pizza_psize <- c(0,50,100)
+
+df_pizzasize <- data.frame(ID = pizza_sizeid,
+                          Size = pizza_size,
+                          Price = pizza_psize)
+
+#df_drinksmenu
+drinks_id <- as.numeric(c(1,2,3))
+drinks_menu <- c("Mineral Water","Coke","Diet coke")
+drinks_price <- c(20,30,40)
+
+df_drinks <- data.frame(ID = drinks_id,
+                        Menu = drinks_menu,
+                        Price = drinks_price)
+
+#df_delivery type
+deli_id <-as.numeric(c(1,2))
+deli_menu <- c("Fast","Normal")
+deli_price <- c(100,50)
+
+df_delivery <- data.frame(ID = deli_id,
+                         Menu = deli_menu,
+                         Price = deli_price)
+
+#Start chatbot
+#Q1
+print ("Welcome to Pizza Lover, This is channel for our delivery service")
+print ("What's your name?")
+cust_name <- readLines ("stdin", n=1)
+print (paste("Welcome!", cust_name))
+
+#Q2 order pizza
+  while (TRUE) {
+  print ("What would you like to order?")
+  print ("This is our pizza menu")
+  print (df_pizza)
+  print ("Please choose menu by type 1-2-3")
+    pizza_order <- as.numeric(readLines ("stdin",n=1))
+      if (pizza_order == 1) {
+        print ("You choose Hawaiian pizza") 
+        break
+      } else if (pizza_order == 2) {
+        print ("You choose Pepporini pizza") 
+        break
+      } else if (pizza_order == 3) {
+        print ("You choose Seafood pizza")
+        break
+      } else print ("Sorry, We don't have this number please try again.") 
+  }
+
+#Q3 Which size of pizza
+
+  while (TRUE){
+    print (paste("Which size of", pizza_toppings[pizza_order]," do you want?"))
+    print(df_pizzasize)
+    pizza_sizeorder <- as.numeric(readLines("stdin",n=1))
+    if (pizza_sizeorder == 1){
+      break
+    }
+    else if (pizza_sizeorder == 2){
+      break
+    }
+    else if (pizza_sizeorder == 3){
+      break
+    } else print ("Sorry, We don't have this number please try again.") 
+  } 
+
+#Q4 How many pizza
+print ("How many pizza do you want?")
+pizza_quantity <- as.numeric(readLines("stdin", n=1))
+print (paste("Your order is", pizza_toppings[pizza_order], pizza_size[pizza_sizeorder], pizza_quantity, "pcs."))
+
+#Q5 drinks
+print ("Please select your drinks")
+  while (TRUE) {
+    print ("This is our drinks menu")
+    print (df_drinks)
+    print ("Please choose menu by type 1-2-3-4")
+    drinks_order <- as.numeric(readLines ("stdin",n=1))
+    if (drinks_order == 1) {
+      print ("You choose Mineral Water")
+      break
+  } else if (drinks_order == 2) {
+      print ("You choose Coke")
+      break
+  } else if (drinks_order == 3) {
+      print ("You choose Diet coke")
+      break
+  } else print ("Sorry, We don't have this number plese try again.") 
+  }
+
+#Q6 How many drinks
+print ("How many drinks do you want?")
+drinks_quantity <- as.numeric(readLines("stdin", n=1))
+print (paste("Your order is", drinks_menu[drinks_order], drinks_quantity, "pcs."))
+
+#Q7 Please select your order type
+while(TRUE){
+  print ("Please select your order type? 1-2")
+  print (df_delivery)
+  deli_type <- as.numeric(readLines("stdin",n=1))
+  if (deli_type == 1){
+    break
+  } else if (deli_type == 2){
+    break
+  } else print("Sorry, We don't have this number plese try again.")
+}
+
+
+#######
+pizza_price <- sum(pizza_price[pizza_order],pizza_psize[pizza_sizeorder])*pizza_quantity
+
+drinks_price <- drinks_price[drinks_order]*drinks_quantity
+
+delivery_price <- deli_price[deli_type]
+#######
+
+#Q8 Summary
+print (paste("This is summary of", cust_name, "'s order"))
+
+print (paste(pizza_toppings[pizza_order], pizza_size[pizza_sizeorder], pizza_quantity, "pcs."))
+
+print (paste(drinks_menu[drinks_order], drinks_quantity, "pcs."))
+print ("--------------------------")
+print (paste("Pizza THB",pizza_price))
+print (paste("Drinks THB",drinks_price))
+print (paste("Delivery THB",delivery_price))
+print (paste("Total THB", sum(pizza_price,drinks_price,delivery_price)))
+print ("Thank you for order with us")
